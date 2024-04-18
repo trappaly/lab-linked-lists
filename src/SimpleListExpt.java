@@ -1,4 +1,5 @@
 import java.io.PrintWriter;
+import java.util.ConcurrentModificationException;
 import java.util.ListIterator;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -138,11 +139,16 @@ public class SimpleListExpt {
   // +-------------+-------------------------------------------------
   // | Experiments |
   // +-------------+
-
-  static void expt1(PrintWriter pen, SimpleList<String> lst) throws Exception {
+// other idea is throws ConcurrentModificationException in parameter and use try/catch
+// before it was just throw exception in parameter
+  static void expt1(PrintWriter pen, SimpleList<String> lst) throws ConcurrentModificationException {
     pen.println("Experiment 1: Add a variety of elements.");
+    try {
     addExpt(pen, lst, new String[] {"A", "B", "C"});
     addExpt(pen, lst, new String[] {"X", "Y", "Z"});
+    } catch (Exception e){
+
+    }
     pen.println();
   } // expt1(PrintWriter, SimpleList<String>)
 
